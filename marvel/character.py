@@ -12,7 +12,7 @@ class CharacterDataWrapper(DataWrapper):
     def data(self):
         return CharacterDataContainer(self.marvel, self.dict['data'])
 
-    def next(self):
+    def __next__(self):
         """
         Returns new CharacterDataWrapper
         TODO: Don't raise offset past count - limit
