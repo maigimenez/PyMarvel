@@ -49,8 +49,8 @@ class PyMarvelTestCase(unittest.TestCase):
         assert self.character_dw.status == 'Ok'
         assert self.character.name == "Wolverine"
 
-        print "\nMarvel.get_character(): \n"
-        print self.character.name
+        print("\nMarvel.get_character(): \n")
+        print((self.character.name))
 
     def test_character_get_comics(self):
 
@@ -59,18 +59,18 @@ class PyMarvelTestCase(unittest.TestCase):
         assert comic_dw.code == 200
         assert comic_dw.status == 'Ok'
         
-        print "\nCharacter.get_comics(): \n"
+        print("\nCharacter.get_comics(): \n")
         for c in comic_dw.data.results:
-            print "%s - %s" % (c.id, c.title)
+            print(("%s - %s" % (c.id, c.title)))
 
         comic_dw_params = self.character.get_comics(format="comic", formatType="comic", hasDigitalIssue=True, orderBy="title", limit=10, offset=30)
 
         assert comic_dw_params.code == 200
         assert comic_dw_params.status == 'Ok'
         
-        print "\nCharacter.get_comics(params): \n"
+        print("\nCharacter.get_comics(params): \n")
         for c in comic_dw_params.data.results:
-            print "%s - %s" % (c.id, c.title)
+            print(("%s - %s" % (c.id, c.title)))
 
     def test_character_get_events(self):
 
@@ -79,18 +79,18 @@ class PyMarvelTestCase(unittest.TestCase):
         assert events_dw.code == 200
         assert events_dw.status == 'Ok'
 
-        print "\nCharacter.get_events(): \n"
+        print("\nCharacter.get_events(): \n")
         for e in events_dw.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
         events_dw_params = self.character.get_events(orderBy="startDate", limit=10)
 
         assert events_dw_params.code == 200
         assert events_dw_params.status == 'Ok'
 
-        print "\nCharacter.get_events(params): \n"
+        print("\nCharacter.get_events(params): \n")
         for e in events_dw_params.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
     def test_get_characters(self):
         
@@ -108,14 +108,14 @@ class PyMarvelTestCase(unittest.TestCase):
         assert type(characters_dw.data) is CharacterDataContainer
         assert type(characters_dw.data.results) is list
 
-        print "\nMarvel.get_characters():\n"
+        print("\nMarvel.get_characters():\n")
         for c in characters_dw.data.results:
-            print "%s - %s" % (c.id, c.name)
+            print(("%s - %s" % (c.id, c.name)))
 
     def test_get_characters_next(self):
         
         characters_dw = self.m.get_characters(orderBy="name,-modified", limit="10", offset="15")
-        new_cdw = characters_dw.next()
+        new_cdw = next(characters_dw)
 
         assert new_cdw.code == 200
 
@@ -164,8 +164,8 @@ class PyMarvelTestCase(unittest.TestCase):
         #assert isinstance(cdw.data.result.events.items[0], EventSummary)
 
 
-        print "\nMarvel.get_comic(): \n"
-        print self.comic.title
+        print("\nMarvel.get_comic(): \n")
+        print((self.comic.title))
 
 
     def test_comic_get_events(self):
@@ -175,18 +175,18 @@ class PyMarvelTestCase(unittest.TestCase):
         assert events_dw.code == 200
         assert events_dw.status == 'Ok'
 
-        print "\nComic.get_events(): \n"
+        print("\nComic.get_events(): \n")
         for e in events_dw.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
         events_dw_params = self.comic.get_events(orderBy="startDate", limit=1)
 
         assert events_dw_params.code == 200
         assert events_dw_params.status == 'Ok'
 
-        print "\nComic.get_events(params): \n"
+        print("\nComic.get_events(params): \n")
         for e in events_dw_params.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
         
     def test_get_comics(self):
@@ -205,7 +205,7 @@ class PyMarvelTestCase(unittest.TestCase):
         assert type(cdw.data.results) is list
 
         for c in cdw.data.results:
-            print "%s - %s" % (c.id, c.title)
+            print(("%s - %s" % (c.id, c.title)))
             
 
     def test_get_creator(self):
@@ -222,18 +222,18 @@ class PyMarvelTestCase(unittest.TestCase):
         assert comic_dw.code == 200
         assert comic_dw.status == 'Ok'
         
-        print "\nCreator.get_comics(): \n"
+        print("\nCreator.get_comics(): \n")
         for c in comic_dw.data.results:
-            print "%s - %s" % (c.id, c.title)
+            print(("%s - %s" % (c.id, c.title)))
 
         comic_dw_params = self.creator.get_comics(format="comic", formatType="comic", hasDigitalIssue=True, orderBy="title", limit=10, offset=30)
 
         assert comic_dw_params.code == 200
         assert comic_dw_params.status == 'Ok'
         
-        print "\nCreator.get_comics(params): \n"
+        print("\nCreator.get_comics(params): \n")
         for c in comic_dw_params.data.results:
-            print "%s - %s" % (c.id, c.title)
+            print(("%s - %s" % (c.id, c.title)))
 
     def test_creator_get_events(self):
 
@@ -242,18 +242,18 @@ class PyMarvelTestCase(unittest.TestCase):
         assert events_dw.code == 200
         assert events_dw.status == 'Ok'
 
-        print "\nCreator.get_events(): \n"
+        print("\nCreator.get_events(): \n")
         for e in events_dw.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
         events_dw_params = self.creator.get_events(orderBy="startDate")
 
         assert events_dw_params.code == 200
         assert events_dw_params.status == 'Ok'
 
-        print "\nCreator.get_events(params): \n"
+        print("\nCreator.get_events(params): \n")
         for e in events_dw_params.data.results:
-            print "%s - %s" % (e.id, e.title)
+            print(("%s - %s" % (e.id, e.title)))
 
 
 
@@ -264,12 +264,12 @@ class PyMarvelTestCase(unittest.TestCase):
         assert event_dw.code == 200
         assert event_dw.status == 'Ok'        
 
-        print "\nMarvel.get_event: \n"
+        print("\nMarvel.get_event: \n")
         event = event_dw.data.result
         assert isinstance(event, Event)
         assert event.title == "Infinity Gauntlet"
-        print event.title
-        print event.description
+        print((event.title))
+        print((event.description))
 
 
     def test_get_events(self):
@@ -280,9 +280,9 @@ class PyMarvelTestCase(unittest.TestCase):
 
         assert response.data.total > 0
 
-        print "\nMarvel.get_events(): \n"
+        print("\nMarvel.get_events(): \n")
         for e in response.data.results:
-            print "%s" % e.title
+            print(("%s" % e.title))
 
     def test_get_single_series(self):
 
@@ -290,8 +290,8 @@ class PyMarvelTestCase(unittest.TestCase):
         assert self.series_dw.status == 'Ok'
         assert self.series.title == "5 Ronin (2010)"
 
-        print "\nMarvel.get_single_series(): \n"
-        print self.series.title
+        print("\nMarvel.get_single_series(): \n")
+        print((self.series.title))
         
     def test_get_series(self):
 
@@ -302,9 +302,9 @@ class PyMarvelTestCase(unittest.TestCase):
 
         assert response.data.total > 0
 
-        print "\nMarvel.get_series(): \n"
+        print("\nMarvel.get_series(): \n")
         for s in response.data.results:
-            print "%s" % s.title
+            print(("%s" % s.title))
 
 
     def test_get_story(self):
@@ -312,9 +312,9 @@ class PyMarvelTestCase(unittest.TestCase):
         assert self.story_dw.code == 200
         assert self.story_dw.status == 'Ok'        
 
-        print "\nMarvel.get_story(): \n"
+        print("\nMarvel.get_story(): \n")
         assert isinstance(self.story, Story)
-        print self.story.title
+        print((self.story.title))
 
     def test_get_stories(self):
         
@@ -324,16 +324,16 @@ class PyMarvelTestCase(unittest.TestCase):
         assert response.status == 'Ok'
         assert response.data.total > 0
 
-        print "\nMarvel.get_events(): \n"
+        print("\nMarvel.get_events(): \n")
         for s in response.data.results:
-            print "%s" % s.title
+            print(("%s" % s.title))
 
 
     def test_chain(self):
-        print "\nMethod Chaining:\n"
+        print("\nMethod Chaining:\n")
         event = self.m.get_series(characters="1009718").data.result.get_characters().data.results[1].get_comics().data.results[0].get_creators().data.results[0].get_events().data.results[0]
         assert isinstance(event, Event)
-        print event.title
+        print((event.title))
         
 if __name__ == '__main__':
     unittest.main()

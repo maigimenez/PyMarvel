@@ -3,7 +3,7 @@
 __author__ = 'Garrett Pennington'
 __date__ = '02/07/14'
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import json
 import hashlib
 import datetime
@@ -64,7 +64,7 @@ class Marvel(object):
         
         :returns:  str -- URL encoded query parameters
         """
-        return urllib.urlencode(params)
+        return urllib.parse.urlencode(params)
 
     def _auth(self):
         """
@@ -73,7 +73,8 @@ class Marvel(object):
         :returns:  str -- URL encoded query parameters containing "ts", "apikey", and "hash"
         """
         ts = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
-        hash_string = hashlib.md5("%s%s%s" % (ts, self.private_key, self.public_key)).hexdigest()
+        hash_bytes = ("%s%s%s" % (ts, self.private_key, self.public_key)).encode('utf-8')
+        hash_string = hashlib.md5(hash_bytes).hexdigest()
         return "ts=%s&apikey=%s&hash=%s" % (ts, self.public_key, hash_string)
 
 

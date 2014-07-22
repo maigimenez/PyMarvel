@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 version = '0.1.0'
 
-setup(name='PyMarvel',
+setup(name='pyMarvel3',
       version=version,
       description="Python wrapper for Marvel API",
       long_description=open("README.md", "r").read(),
